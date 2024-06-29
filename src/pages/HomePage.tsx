@@ -1,55 +1,16 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-import HomeCardsRecipies from "../components/HomeCardsRecipies";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
-   const [ recipies, setRecipies ] = useState([]);
-   const API_URL = "http://localhost:9999/recipe";
-
-   useEffect(() => {
-      const fetchRecipies = async() => {
-         try {
-            const res = await axios.get(API_URL);
-            setRecipies(res.data);
-         } catch (err) {
-            console.log(err);
-         }
-      };
-      
-      fetchRecipies();
-
-   },[])
-
-
    return (
-      <section>
-         <header className="py-6">
-            <h1 className="font-palanquin text-4xl text-center mb-3 text-violet-400 font-semibold">Recipe Finder</h1>
-            <p className="font-palanquin text-center mb-6">find your favorite recipies.</p>
-            <form 
-               action=""
-               className="w-full flex flex-col items-center justify-center"
-            >
-               <input 
-                  type="text" 
-                  name="find recipies" 
-                  id="recipies"
-                  className="border-[1px] w-[70%] mb-2 py-[3px] pl-3" 
-               />
-               <button 
-                  type="submit"
-                  className="px-[1.5rem] py-[5px] rounded-sm border-[1px] bg-violet-400 text-center cursor-pointer text-white"
-               >Search</button>
-            </form>
-         </header>
-         <article className="py-5">
-            <HomeCardsRecipies 
-               recipies={recipies}
-            />
-         </article>
+      <section className="h-screen flex items-center justify-center">
+         <Link
+            to="/recipies"
+            className="bg-blue-400 text-white shadow-md py-3 px-10 rounded-md"
+         >
+            Start Find Products
+         </Link>
       </section>
-   )
+   );
 };
 
 export default HomePage;
