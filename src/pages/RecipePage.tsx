@@ -13,10 +13,6 @@ const RecipePage = () => {
    );
 };
 
-// interface Params {
-//    recipeId: string;
-// };
-
 const recipeLoader = async ({ params }) => {
    const recipeId = params.recipeId;
 
