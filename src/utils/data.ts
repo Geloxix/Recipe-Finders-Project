@@ -3,15 +3,20 @@ export interface Recipe {
    name: string;
    description: string;
    cuisine: string;
-   prep_time: number;
-   cook_time: number;
-   total_time: number;
+   prepTime: number;
+   cookTime: number;
+   totalTime: number;
    img: string;
    serving: string;
-   ingredients: string[];
-   nutritions: string[];
+   ingredients: Ingredients[];
+   instructions: InstructionsType[];
+   nutritions: NutritionType[];
 }
 
+export interface NutritionType {
+   name: string;
+   quantity: string;
+};
 export interface Ingredients {
    ingredientId: number;
    name: string;

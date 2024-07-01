@@ -4,9 +4,9 @@ import Navbar from "../components/Navbar";
 
 const HomePage = () => {
    return (
-      <section>
+      <section className="">
          <Navbar />
-         <div className="h-screen flex items-center justify-center border-2">
+         <div className="h-screen border-2 flex items-center justify-center flex-col">
             <Link
                to="/recipies"
                className="bg-blue-400 text-white shadow-md py-3 px-10 rounded-md"

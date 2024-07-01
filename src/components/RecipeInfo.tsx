@@ -1,4 +1,4 @@
-const Recipe = ({ recipe }) => {
+const RecipeInfo = ({ recipe }) => {
    return (
       <>
          <img src={recipe.img} alt="recipe image" className="w-[200px]" />
@@ -11,4 +11,4 @@ const Recipe = ({ recipe }) => {
    );
 };
 
-export default Recipe;
+export default RecipeInfo;
