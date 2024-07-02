@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { Ingredients, InstructionsType, Recipe } from "../utils/data";
 import { RiArrowGoBackLine, RiHeartLine } from "@remixicon/react";
@@ -9,9 +10,9 @@ import Instructions from "./Instructions";
 import RecipeInfo from "./RecipeInfo";
 import SeeMore from "./SeeMore";
 
-const RecipeCard = ({ recipe, favorite, setFavorite }) => {
+const RecipeCard = ({ recipe, favorites, setFavorites }) => {
    const [isFullyViewed, setIsFullyViewed] = useState<boolean>(true);
-  
+
    let currentRecipe: Recipe = {
       id: recipe.id,
       name: recipe.name,
@@ -24,17 +25,19 @@ const RecipeCard = ({ recipe, favorite, setFavorite }) => {
       serving: recipe.serving,
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
-      nutritions: recipe.nutritions
-
+      nutritions: recipe.nutritions,
    };
-   
-   useEffect(() => {
-      localStorage.setItem('fav', JSON.stringify(favorite));
-   },[]);
+
+   console.log(recipe.id);
 
    const handleAddToFavorites = () => {
-      setFavorite([...favorite, currentRecipe]);
-      localStorage.setItem('fav', JSON.stringify(favorite));
+      if (favorites.some((f) => f.id === recipe.id)) {
+         toast.error("Recipe already in favorites");
+      } else {
+         setFavorites([...favorites, currentRecipe]);
+         localStorage.setItem("fav", JSON.stringify(favorites));
+         toast.success("Added to favorites");
+      }
    };
 
    let currentInstructions = isFullyViewed
@@ -44,14 +47,15 @@ const RecipeCard = ({ recipe, favorite, setFavorite }) => {
    return (
       <div className="h-screen">
          <button className="mt-1 ml-1 px-6 py-2 mb-5">
-            <Link 
+            <Link
                to="/recipies"
                className="flex gap-2 text-[0.90em] hover:text-violet-400 transition-all"
             >
-               <RiArrowGoBackLine />Back to recipies
+               <RiArrowGoBackLine />
+               Back to recipies
             </Link>
          </button>
-         
+
          <div className="flex items-center justify-center">
             <div className="shadow-md p-4 flex flex-row items-center justify-center gap-3 w-[80%] bg-light-gray rounded-md relative">
                <div className="basis-[45%] p-3">
@@ -76,19 +80,21 @@ const RecipeCard = ({ recipe, favorite, setFavorite }) => {
                   <h1 className="text-xl font-montserrat mb-2">How to cook?</h1>
                   <h3>follow this Step: </h3>
                   <ul className={`p-2`}>
-                     {currentInstructions.map((instruction: InstructionsType) => (
-                        <Instructions
-                           key={instruction.stepNumber}
-                           instruction={instruction}
-                        />
-                     ))}
+                     {currentInstructions.map(
+                        (instruction: InstructionsType) => (
+                           <Instructions
+                              key={instruction.stepNumber}
+                              instruction={instruction}
+                           />
+                        ),
+                     )}
                   </ul>
                   <SeeMore
                      setIsFullyViewed={setIsFullyViewed}
                      isFullyViewed={isFullyViewed}
                   />
                </div>
-               <button 
+               <button
                   className="absolute top-5 right-6 z-[999]"
                   onClick={handleAddToFavorites}
                >
@@ -96,7 +102,7 @@ const RecipeCard = ({ recipe, favorite, setFavorite }) => {
                </button>
             </div>
          </div>
-      </div> 
+      </div>
    );
 };
 

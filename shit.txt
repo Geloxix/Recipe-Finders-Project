@@ -1,1 +1,2 @@
 npx json-server data/recipies.json --watch --port 9999
+npx prettier . --write

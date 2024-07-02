@@ -9,8 +9,8 @@ export default {
             poppins: ["Poppins", "Helvetica", "sans-serif"],
          },
          colors: {
-            'light-gray': '#F3F3F3',
-         }
+            "light-gray": "#F3F3F3",
+         },
       },
    },
    plugins: [],

@@ -7,8 +7,8 @@ import HomeCardsRecipies from "../components/HomeCardsRecipies";
 import { RiHome2Line } from "@remixicon/react";
 
 const RecipiesPage = () => {
-   const [ recipies, setRecipies ] = useState([]);
-   const [ filteredRecipe, setFilteredRecipe ] = useState<string>('');
+   const [recipies, setRecipies] = useState([]);
+   const [filteredRecipe, setFilteredRecipe] = useState<string>("");
 
    useEffect(() => {
       const fetchRecipies = async () => {
@@ -26,24 +26,20 @@ const RecipiesPage = () => {
    const handleFilteredRecipies = (e: ChangeEvent<HTMLInputElement>) => {
       e.preventDefault();
       setFilteredRecipe(e.target.value);
-      console.log(filteredRecipe);
    };
 
-   const filteredRecipies = recipies.filter((rec: Recipe) => 
-      rec.name.toLowerCase().includes(filteredRecipe.toLowerCase())
+   const filteredRecipies = recipies.filter((rec: Recipe) =>
+      rec.name.toLowerCase().includes(filteredRecipe.toLowerCase()),
    );
 
    return (
       <section>
          <button className="mt-3 ml-5 text-[0.90em]">
-             <Link 
-               to="/"
-               className="flex gap-2 hover:underline transition-all"
-            >
+            <Link to="/" className="flex gap-2 hover:underline transition-all">
                <RiHome2Line /> Home
             </Link>
          </button>
-        
+
          <header className="py-6">
             <h1 className="font-palanquin text-4xl text-center mb-3 text-violet-400 font-semibold">
                Recipe Finder
@@ -51,9 +47,7 @@ const RecipiesPage = () => {
             <p className="font-palanquin text-center mb-6">
                find your favorite recipies.
             </p>
-            <form
-               className="w-full flex flex-col items-center justify-center"
-            >
+            <form className="w-full flex flex-col items-center justify-center">
                <input
                   type="text"
                   name="find recipies"

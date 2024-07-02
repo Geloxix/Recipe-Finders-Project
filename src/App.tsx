@@ -1,6 +1,5 @@
-import { createBrowserRouter, json, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState } from "react";
-// import axios from "axios";
 
 import { Recipe } from "./utils/data";
 
@@ -12,8 +11,8 @@ import RecipePage, { recipeLoader } from "./pages/RecipePage";
 import FavoritesPage from "./pages/FavoritesPage";
 
 const App = () => {
-   const [ favorite, setFavorite ] = useState<Recipe[]>(() => {
-      const savedRecipe = localStorage.getItem('fav');
+   const [favorites, setFavorites] = useState<Recipe[]>(() => {
+      const savedRecipe = localStorage.getItem("fav");
       return savedRecipe ? JSON.parse(savedRecipe) : [];
    });
 
@@ -29,13 +28,15 @@ const App = () => {
       },
       {
          path: "/recipies/:recipeId",
-         element: <RecipePage favorite={favorite} setFavorite={setFavorite} />,
+         element: (
+            <RecipePage favorites={favorites} setFavorites={setFavorites} />
+         ),
          loader: recipeLoader,
       },
       {
          path: "/favorites",
-         element: <FavoritesPage favorite={favorite} />
-      }
+         element: <FavoritesPage favorites={favorites} />,
+      },
    ]);
 
    return <RouterProvider router={router} />;

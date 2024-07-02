@@ -1,14 +1,21 @@
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import RecipeCard from "../components/RecipeCard";
 
-const RecipePage = ({ favorite, setFavorite }) => {
+const RecipePage = ({ favorites, setFavorites }) => {
    const recipe = useLoaderData();
 
    return (
       <section>
-         <RecipeCard recipe={recipe} favorite={favorite} setFavorite={setFavorite} />
+         <ToastContainer />
+         <RecipeCard
+            recipe={recipe}
+            favorites={favorites}
+            setFavorites={setFavorites}
+         />
       </section>
    );
 };

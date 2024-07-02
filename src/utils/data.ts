@@ -16,7 +16,7 @@ export interface Recipe {
 export interface NutritionType {
    name: string;
    quantity: string;
-};
+}
 export interface Ingredients {
    ingredientId: number;
    name: string;
