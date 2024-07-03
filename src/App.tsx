@@ -28,15 +28,13 @@ const App = () => {
       },
       {
          path: "/recipies/:recipeId",
-         element: (
-            <RecipePage favorites={favorites} setFavorites={setFavorites} />
-         ),
+         element: <RecipePage favorites={favorites} setFavorites={setFavorites} />,
          loader: recipeLoader,
       },
       {
          path: "/favorites",
          element: <FavoritesPage favorites={favorites} />,
-      },
+      }
    ]);
 
    return <RouterProvider router={router} />;

@@ -5,9 +5,11 @@ import axios from "axios";
 import { Recipe } from "../utils/data";
 import HomeCardsRecipies from "../components/HomeCardsRecipies";
 import { RiHome2Line } from "@remixicon/react";
+import Spinner from "../components/Spinner";
 
 const RecipiesPage = () => {
    const [recipies, setRecipies] = useState([]);
+   const [ loading, setLoading ] = useState<boolean>(true);
    const [filteredRecipe, setFilteredRecipe] = useState<string>("");
 
    useEffect(() => {
@@ -17,6 +19,8 @@ const RecipiesPage = () => {
             setRecipies(res.data);
          } catch (err) {
             console.error("Error:", err);
+         } finally {
+            setLoading(false);
          }
       };
 
@@ -34,7 +38,7 @@ const RecipiesPage = () => {
 
    return (
       <section>
-         <button className="mt-3 ml-5 text-[0.90em]">
+         <button className="mt-3 ml-1 px-6 text-[0.90em]">
             <Link to="/" className="flex gap-2 hover:underline transition-all">
                <RiHome2Line /> Home
             </Link>
@@ -47,7 +51,7 @@ const RecipiesPage = () => {
             <p className="font-palanquin text-center mb-6">
                find your favorite recipies.
             </p>
-            <form className="w-full flex flex-col items-center justify-center">
+            <form className="w-full flex flex-col items-center justify-center font-montserrat">
                <input
                   type="text"
                   name="find recipies"
@@ -55,7 +59,7 @@ const RecipiesPage = () => {
                   onChange={handleFilteredRecipies}
                   placeholder="Enter recipe name.."
                   id="recipies"
-                  className="border-[1px] w-[70%] mb-2 py-[3px] pl-3 rounded-md"
+                  className="border-[1px] w-[70%] mb-2 py-[7px] pl-3"
                />
                <button
                   type="submit"
@@ -66,7 +70,10 @@ const RecipiesPage = () => {
             </form>
          </header>
          <article className="py-5">
-            <HomeCardsRecipies filteredRecipies={filteredRecipies} />
+            {
+               loading ? ( <Spinner loading={loading} />) : 
+               ( <HomeCardsRecipies filteredRecipies={filteredRecipies} />)
+            }
          </article>
       </section>
    );

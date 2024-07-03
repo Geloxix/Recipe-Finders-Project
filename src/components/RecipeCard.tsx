@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -26,16 +26,17 @@ const RecipeCard = ({ recipe, favorites, setFavorites }) => {
       ingredients: recipe.ingredients,
       instructions: recipe.instructions,
       nutritions: recipe.nutritions,
-   };
+   }; 
 
-   console.log(recipe.id);
+   useEffect(() => {
+      localStorage.setItem("fav", JSON.stringify(favorites));
+   },[favorites])
 
    const handleAddToFavorites = () => {
-      if (favorites.some((f) => f.id === recipe.id)) {
+      if (favorites.some((f: Recipe) => f.id === recipe.id)) {
          toast.error("Recipe already in favorites");
       } else {
          setFavorites([...favorites, currentRecipe]);
-         localStorage.setItem("fav", JSON.stringify(favorites));
          toast.success("Added to favorites");
       }
    };
