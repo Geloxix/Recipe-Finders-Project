@@ -9,7 +9,7 @@ const HomeCardsRecipies = ({ filteredRecipies }) => {
             <ul className="grid grid-cols-3 place-content-center place-items-center justify-items-center items-center">
                {filteredRecipies.map((recipe: Recipe) => (
                   <li key={recipe.id}>
-                     <div className="w-[300px] p-[2px] bg-light-gray">
+                     <div className="w-[300px] shadow-sm bg-light-gray">
                         <Link 
                            to={`/recipies/${recipe.id}`}
                         >

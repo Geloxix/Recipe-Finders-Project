@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { Ingredients, InstructionsType, Recipe } from "../utils/data";
-import { RiArrowGoBackLine, RiHeartLine } from "@remixicon/react";
+import { RiHeartLine, RiRestaurantLine } from "@remixicon/react";
 
 import IngredientsList from "./IngredientsList";
 import Instructions from "./Instructions";
@@ -47,15 +47,17 @@ const RecipeCard = ({ recipe, favorites, setFavorites }) => {
 
    return (
       <div className="h-screen">
-         <button className="mt-1 ml-1 px-6 py-2 mb-5">
-            <Link
-               to="/recipies"
-               className="flex gap-2 text-[0.90em] hover:text-violet-400 transition-all"
-            >
-               <RiArrowGoBackLine />
-               Back to recipies
-            </Link>
-         </button>
+         <div className="flex flex-row py-3 pl-5">
+            <button className="p-2">
+               <Link
+                  to="/recipies"
+                  className="flex gap-3 text-[0.90em] hover:text-violet-400 transition-all"
+               >
+                  <RiRestaurantLine />
+                  Recipies
+               </Link>
+            </button>
+         </div>
 
          <div className="flex items-center justify-center">
             <div className="shadow-md p-4 flex flex-row items-center justify-center gap-3 w-[80%] bg-light-gray rounded-md relative">

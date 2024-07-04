@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { Recipe } from "../utils/data";
 import HomeCardsRecipies from "../components/HomeCardsRecipies";
-import { RiHome2Line } from "@remixicon/react";
+import { RiHome5Line } from "@remixicon/react";
 import Spinner from "../components/Spinner";
 
 const RecipiesPage = () => {
@@ -38,9 +38,9 @@ const RecipiesPage = () => {
 
    return (
       <section>
-         <button className="mt-3 ml-1 px-6 text-[0.90em]">
-            <Link to="/" className="flex gap-2 hover:underline transition-all">
-               <RiHome2Line /> Home
+         <button className="mt-3 ml-1 px-6 text-[0.90em] hover:text-violet-500 transition-all">
+            <Link to="/" className="flex gap-2 hover:underline">
+               <RiHome5Line /> Home
             </Link>
          </button>
 
