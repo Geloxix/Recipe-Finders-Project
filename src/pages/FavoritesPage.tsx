@@ -30,8 +30,8 @@ const FavoritesPage = ({ favorites }) => {
          <div 
             className="h-screen flex items-center justify-start flex-col font-poppins py-10"
          >
-            <h1 className="mb-6 text-3xl font-palanquin text-violet-400">favorites</h1>
-               <div className="h-full flex items-center justify-center">
+            <h1 className="text-3xl font-palanquin text-violet-400">favorites</h1>
+               <div className="h-full flex items-start justify-center">
                   {
                      favorites.length === 0 ? <h1 className="">Favorites Empty!</h1> : 
                         <ul>
